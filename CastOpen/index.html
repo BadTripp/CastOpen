@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Screen Sharing App</title>
+  <style>
+    /* Stili CSS */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    #selectContainer {
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    #sourceList {
+      margin-bottom: 10px;
+      width: 200px;
+      padding: 5px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    #videoContainer {
+      width: 100%;
+      height: calc(100vh - 150px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f2f2f2;
+    }
+
+    video {
+      max-width: 100%;
+      max-height: 100%;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .info {
+      color: green;
+    }
+
+    /* Cerchio rosso per lo stato del server */
+    .server-status, .client-status {
+      display: inline-block;
+      margin-left: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: red;
+    }
+
+    #serverStatusText {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div id="selectContainer">
+    <h1>Cast Open</h1>
+    <p>Server IP: <b id="ip">192.168.0.1  </b></p> <!-- Mostra l'IP del server -->
+    <p><span id="serverStatusText">Server Status</span><span class="server-status"></span></p> <!-- Mostra lo stato del server -->
+    <p><span id="serverStatusText">Client mobile status</span><span class="client-status"></span></p> <!-- Mostra lo stato del client mobile -->
+    <p id="info" hidden class="info">Now you can start sharing from Mobile</p> <!-- Messaggio informativo nascosto -->
+    <select id="sourceList">
+      <option disabled selected>Select a source</option> <!-- Opzione predefinita per la selezione della sorgente -->
+    </select>
+    <button id="buttonTestSource">Test Source</button> <!-- Pulsante per testare la sorgente -->
+    <button id="buttonRunServer">Run Server</button> <!-- Pulsante per avviare il server -->
+    <button id="buttonStopServer">Stop Server</button> <!-- Pulsante per fermare il server -->
+  </div>
+
+  <div id="videoContainer">
+    <video id="screenVideo" autoplay></video> <!-- Video per visualizzare lo schermo condiviso -->
+  </div>
+
+  <!-- Inclusione di PeerJS e del file JavaScript -->
+  <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>
