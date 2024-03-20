@@ -27,6 +27,10 @@ npm install
 
 npm start
 
+## How It Works
+
+CastOpen hosts a PeerJS server and constructs a PeerJS client to connect and transmit the desktop to one or more peers.
+
 
 ## Known Issues
 
